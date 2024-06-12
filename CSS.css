@@ -55,7 +55,7 @@
   }
   .showing3{
     display: block;
-    font-family: Jazz LET, fantasy;
+    font-family: "Comic Sans MS", cursive, sans-serif;
     background-color: #8dc8a4;
     color: #8c4600;
     width: 300px;
@@ -69,7 +69,7 @@
   }
   .showing4{
     display: block;
-    font-family: OCR A Std, monospace;
+    font-family: 'Times New Roman', Times, serif;
     background-color: #f634d9;
     font-size: 30px;
     color: #0c006d;

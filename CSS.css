@@ -14,7 +14,9 @@
     margin-top: 20px;
 }
 .about{
-    display: flex;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     font-size: 20px;
     color: #000000;
     text-align: center;

@@ -1,3 +1,9 @@
 body {
     background-color: #111111;
 }
+
+.logo{
+    width: 1400px;
+    height: 600px;
+    text-align: center;
+}

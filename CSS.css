@@ -13,3 +13,15 @@ body {
     display: block;
     margin: auto
 }
+
+.claim{
+    .claim{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        background-color: grey;
+        padding: 10px;
+    }
+}

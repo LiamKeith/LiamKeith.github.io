@@ -5,3 +5,10 @@ body {
 .logo{
     text-align: center;
 }
+
+.about{
+    text-align: center;
+    background-color: grey;
+    padding: 10px;
+    display: inline-block;
+}

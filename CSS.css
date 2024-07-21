@@ -11,7 +11,7 @@ body {
     background-color: grey;
     padding: 10px;
     display: block;
-    margin: auto
+    margin: auto;
 }
 
 .claim{
@@ -23,5 +23,6 @@ body {
     background-color: grey;
     padding: 10px;
     display: block;
-    margin: auto
+    margin: auto;
+    font-size: 12px; /* Add this line to reduce the font size */
 }

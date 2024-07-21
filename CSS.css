@@ -10,5 +10,6 @@ body {
     text-align: center;
     background-color: grey;
     padding: 10px;
-    display: inline-block;
+    display: block;
+    margin: auto
 }

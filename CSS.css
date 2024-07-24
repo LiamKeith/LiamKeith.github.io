@@ -2,11 +2,11 @@ body {
     background-color: #111111;
 }
 
-.logo{
+.logo {
     text-align: center;
 }
 
-.about{
+.about {
     text-align: center;
     background-color: grey;
     padding: 10px;
@@ -14,10 +14,18 @@ body {
     margin: auto;
 }
 
-.claim{
+.Claim {
     text-align: center;
     color: rgb(255, 254, 254);
     padding: 10px;
     display: block;
     margin: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+    padding: 8px 10px;
+    font-size: 14px;
 }

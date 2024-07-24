@@ -15,14 +15,9 @@ body {
 }
 
 .claim{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
     text-align: center;
-    background-color: grey;
+    color: rgb(255, 254, 254);
     padding: 10px;
     display: block;
     margin: auto;
-    font-size: 12px; /* Add this line to reduce the font size */
 }

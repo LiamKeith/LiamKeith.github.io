@@ -17,11 +17,12 @@ body {
 .Claim {
     text-align: center;
     color: rgb(255, 255, 255);
+    background-color: #111111;
     padding: 10px;
     display: block;
     margin: auto;
-    position: fixed;
-    bottom: 0;
+    position: absolute;
+    bottom: 5px;
     left: 0;
     right: 0;
 }

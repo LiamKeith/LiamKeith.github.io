@@ -3,10 +3,19 @@ body {
 }
 
 .logo {
+    margin-top: 100px;
     text-align: center;
 }
 
 .about {
+    text-align: center;
+    background-color: grey;
+    padding: 10px;
+    display: block;
+    margin: auto;
+}
+
+.contact {
     text-align: center;
     background-color: grey;
     padding: 10px;

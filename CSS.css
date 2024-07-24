@@ -3,7 +3,7 @@ body {
 }
 
 .logo {
-    margin-top: 100px;
+    margin-top: 200px;
     text-align: center;
 }
 
@@ -20,7 +20,7 @@ body {
     background-color: grey;
     padding: 100px;
     display: block;
-    margin: auto;
+    margin: 50px;
 }
 
 .Claim {

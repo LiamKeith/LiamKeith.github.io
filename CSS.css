@@ -11,6 +11,7 @@ body {
 button {
     display: block;
     margin: auto;
+    margin-top: 10px;
 }
 .about {
     text-align: center;

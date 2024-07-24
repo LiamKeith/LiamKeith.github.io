@@ -20,12 +20,12 @@ body {
     background-color: grey;
     padding: 10px;
     display: block;
-    margin: auto;
+    margin-top: 10px;
 }
 
 .Claim {
     text-align: center;
-    color: rgb(255, 255, 255);
+    color: #ffae00;
     background-color: #111111;
     padding: 10px;
     display: block;

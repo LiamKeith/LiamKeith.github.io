@@ -1,32 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #111111;
-    height: 100%;
-    overflow: hidden; /* Prevent default scroll on body */
-}
-
-.container {
-    height: 100vh; /* Use full viewport height */
-    scroll-snap-type: y mandatory; /* Enable vertical snap scrolling */
-    overflow-y: scroll; /* Allow vertical scrolling */
-}
-
-
-section {
-    height: 100vh; /* Each section takes full viewport height */
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    scroll-snap-align: start; /* Snap alignment */
-    background-color: #222; /* Optional: background color for visibility */
-    color: #ffae00;
-}
-
 /* Style for the Claim section */
 .Claim {
     text-align: center;
@@ -40,55 +11,46 @@ section {
     height: auto; /* Allow height to adjust based on content */
     z-index: 1000; /* Ensure it stays above other content */
 }
-
-/* Style for the logo */
-.logo {
-    max-width: 100%; /* Adjust as needed */
-    height: auto; /* Maintain aspect ratio */
-    margin-top: 0; /* Remove top margin */
-    margin-bottom: 0; /* Remove bottom margin */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Style for buttons */
-button {
-    display: block;
-    margin: auto;
-    margin-top: 20px;
-    background-color: grey; /* Make button background consistent */
-    color: white; /* Set button text color */
-    padding: 10px 20px; /* Add padding for better appearance */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    text-align: center;
+body {
+    background-color: #111;
+    height: 100vh; /* Fill the viewport height */
+    overflow: hidden; /* Prevent default scroll on the body */
 }
 
-.about:hover, .contact:hover {
-    background-color: darkgrey; /* Change background on hover */
+.container {
+    height: 100vh; /* Full viewport height */
+    overflow-y: scroll; /* Enable vertical scrolling */
+    scroll-snap-type: y mandatory; /* Enable snap scrolling */
 }
 
-h1 {
-    position: relative; /* Position absolutely within the container */
-    top: 0; /* Set the position from the top of the container */
-}
-
-button {
-    display: block;
-    margin: auto;
-    margin-top: 20px;
-    background-color: grey; /* Make button background consistent */
-    color: white; /* Set button text color */
-    padding: 10px 20px; /* Add padding for better appearance */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    text-align: center;
+.section {
+    height: 100vh; /* Each section takes full viewport height */
     display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    font-size: 2rem;
+    color: #fff;
+    scroll-snap-align: start; /* Snap alignment */
 }
 
-
-.about:hover, .contact:hover {
-    background-color: darkgrey; /* Change background on hover */
+.section1 {
+    background-color: #ff5733; /* Red section */
 }
 
-h1 {
-    position: relative; /* Position absolutely within the container */
-    top: 0; /* Set the position from the top of the container */
-    text-align: center;
+.section2 {
+    background-color: #33c4ff; /* Blue section */
+}
+
+.section3 {
+    background-color: #75ff33; /* Green section */
+}
+
+.section4 {
+    background-color: #ff33a8; /* Pink section */
 }

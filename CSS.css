@@ -44,7 +44,7 @@ section {
     margin-top: 200px; /* Adjust as necessary for your layout */
     margin-bottom: 20px; /* Add margin at the bottom */
     text-align: center;
-    position: relative; /* Position relative for absolute positioning */
+    position: fixed; /* Position relative for absolute positioning */
 }
 
 button {

@@ -62,12 +62,12 @@ button {
     margin: auto;
 }
 
-.about a, .contact a {
-    color: white; /* Set link color */
-    text-decoration: none; /* Remove underline from links */
-    display: block; /* Make the link fill the button */
-}
 
 .about:hover, .contact:hover {
     background-color: darkgrey; /* Change background on hover */
+}
+
+h1 {
+    position: absolute; /* Position absolutely within the container */
+    top: 0; /* Set the position from the top of the container */
 }

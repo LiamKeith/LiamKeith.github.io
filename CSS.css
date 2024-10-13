@@ -48,7 +48,7 @@ section {
 button {
     display: block;
     margin: auto;
-    margin-top: 10px;
+    margin-top: 20px;
     background-color: grey; /* Make button background consistent */
     border: none; /* Remove default button border */
     color: white; /* Set button text color */

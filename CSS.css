@@ -16,17 +16,18 @@ body {
     overflow-y: scroll; /* Allow vertical scrolling */
 }
 
+
 section {
     height: 100vh; /* Each section takes full viewport height */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
     scroll-snap-align: start; /* Snap alignment */
     background-color: #222; /* Optional: background color for visibility */
     color: #ffae00;
 }
 
+/* Style for the Claim section */
 .Claim {
     text-align: center;
     color: #ffae00;
@@ -40,12 +41,33 @@ section {
     z-index: 1000; /* Ensure it stays above other content */
 }
 
+/* Style for the logo */
 .logo {
     max-width: 100%; /* Adjust as needed */
     height: auto; /* Maintain aspect ratio */
     margin-top: 0; /* Remove top margin */
     margin-bottom: 0; /* Remove bottom margin */
+}
+
+/* Style for buttons */
+button {
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    background-color: grey; /* Make button background consistent */
+    color: white; /* Set button text color */
+    padding: 10px 20px; /* Add padding for better appearance */
+    cursor: pointer; /* Change cursor to pointer on hover */
     text-align: center;
+}
+
+.about:hover, .contact:hover {
+    background-color: darkgrey; /* Change background on hover */
+}
+
+h1 {
+    position: relative; /* Position absolutely within the container */
+    top: 0; /* Set the position from the top of the container */
 }
 
 button {

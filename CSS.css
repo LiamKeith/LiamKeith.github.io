@@ -90,4 +90,5 @@ button {
 h1 {
     position: relative; /* Position absolutely within the container */
     top: 0; /* Set the position from the top of the container */
+    text-align: center;
 }

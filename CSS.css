@@ -11,8 +11,8 @@ body {
 }
 
 .container {
-    height: 100vh;
-    scroll-snap-type: y mandatory; /* Enable snap scrolling */
+    height: 100vh; /* Use full viewport height */
+    scroll-snap-type: y mandatory; /* Enable vertical snap scrolling */
     overflow-y: scroll; /* Allow vertical scrolling */
 }
 
@@ -23,6 +23,8 @@ body {
     align-items: center;
     font-size: 2rem;
     scroll-snap-align: start; /* Snap alignment */
+    background-color: #222; /* Optional: background color for visibility */
+    color: #ffae00;
 }
 
 .Claim {

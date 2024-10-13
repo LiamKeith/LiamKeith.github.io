@@ -57,12 +57,6 @@ button {
     text-align: center;
 }
 
-.about, .contact {
-    text-align: center;
-    padding: 10px;
-    margin: auto;
-}
-
 
 .about:hover, .contact:hover {
     background-color: darkgrey; /* Change background on hover */

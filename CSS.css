@@ -42,6 +42,7 @@ section {
 
 .logo {
     margin-top: 200px; /* Adjust as necessary for your layout */
+    margin-bottom: 20px; /* Add margin at the bottom */
     text-align: center;
 }
 
@@ -50,7 +51,6 @@ button {
     margin: auto;
     margin-top: 20px;
     background-color: grey; /* Make button background consistent */
-    border: none; /* Remove default button border */
     color: white; /* Set button text color */
     padding: 10px 20px; /* Add padding for better appearance */
     cursor: pointer; /* Change cursor to pointer on hover */

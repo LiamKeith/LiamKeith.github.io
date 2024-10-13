@@ -41,10 +41,11 @@ section {
 }
 
 .logo {
-    margin-top: 200px; /* Adjust as necessary for your layout */
-    margin-bottom: 20px; /* Add margin at the bottom */
+    max-width: 100%; /* Adjust as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-top: 0; /* Remove top margin */
+    margin-bottom: 0; /* Remove bottom margin */
     text-align: center;
-    position: fixed; /* Position relative for absolute positioning */
 }
 
 button {

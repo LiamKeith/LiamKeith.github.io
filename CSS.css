@@ -2,19 +2,21 @@
     text-align: center;
     color: #ffae00;
     background-color: #111111;
-    padding: 10px;
-    display: block;
-    margin: auto;
-    position: absolute;
-    top: 5px;
+    padding: 20px; /* Add padding for space */
+    position: fixed; /* Fix it to the top */
+    top: 0; /* Align to the top */
     left: 0;
-    right: 0;
+    right: 0; /* Ensure it spans the full width */
+    height: auto; /* Allow height to adjust based on content */
+    z-index: 1000; /* Ensure it stays above other content */
 }
 
 
 
 body {
     background-color: #111111;
+    height: 100%;
+    overflow: hidden; /* Prevent default scroll */
 }
 
 .logo {
@@ -49,11 +51,6 @@ button {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-html, body {
-    height: 100%;
-    overflow: hidden; /* Prevent default scroll */
 }
 
 .container {

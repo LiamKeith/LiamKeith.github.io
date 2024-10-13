@@ -71,3 +71,9 @@ h1 {
     position: absolute; /* Position absolutely within the container */
     top: 0; /* Set the position from the top of the container */
 }
+.button-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

@@ -55,6 +55,7 @@ button {
     padding: 10px 20px; /* Add padding for better appearance */
     cursor: pointer; /* Change cursor to pointer on hover */
     text-align: center;
+    display: column;
 }
 
 

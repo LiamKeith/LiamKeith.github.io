@@ -19,6 +19,7 @@ body {
 .section {
     height: 100vh; /* Each section takes full viewport height */
     display: flex;
+    flex-direction: column; /* Stack children vertically */
     justify-content: center; /* Center content horizontally */
     align-items: center; /* Center content vertically */
     font-size: 2rem;

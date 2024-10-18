@@ -26,3 +26,19 @@ body {
     scroll-snap-align: start; /* Snap alignment */
     text-align: center;
 }
+
+
+h1, p {
+    display: block;
+}
+h1 {
+    font-size: 3rem;
+    color: #ffae00;
+    font-weight: bold;
+}
+
+p {
+    font-size: 1rem;
+    color: #ffae00;
+    white-space: pre-line;
+}

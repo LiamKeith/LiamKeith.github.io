@@ -24,4 +24,5 @@ body {
     font-size: 2rem;
     color: #fff;
     scroll-snap-align: start; /* Snap alignment */
+    text-align: center;
 }

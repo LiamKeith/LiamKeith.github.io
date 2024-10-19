@@ -11,10 +11,15 @@
     height: auto; /* Allow height to adjust based on content */
     z-index: 1000; /* Ensure it stays above other content */
 }
-.scroll{
-    bottom: 0;
-    position: fixed;
-    z-index: 1000;
+.scroll {
+    position: fixed; /* Fix it to the bottom */
+    bottom: 0; /* Align to the bottom */
+    left: 0;
+    right: 0; /* Ensure it spans the full width */
+    z-index: 1000; /* Ensure it stays above other content */
+    background-color: #111111; /* Background color for scroll section */
+    padding: 10px; /* Add padding for space */
+    text-align: center; /* Center text */
 }
 
 

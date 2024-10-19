@@ -39,18 +39,15 @@ body {
 }
 
 
-h1, p {
-    display: block;
-}
 h1 {
-    font-size: 3rem;
+    display: block;
     color: #ffae00;
     font-weight: bold;
     margin-top: 10px;
 }
 
 p {
-    font-size: 1rem;
+    display: block;
     color: #ffae00;
     white-space: pre-line;
     background-color: transparent;

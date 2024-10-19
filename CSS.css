@@ -40,6 +40,11 @@ body {
     scroll-snap-align: start; /* Snap alignment */
     margin-top: 30px;
 }
+.logo{
+    margin-top: 30px;
+}
+
+
 section{
     display: flex;
     align-items: center;

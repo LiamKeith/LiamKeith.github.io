@@ -62,6 +62,7 @@ p {
     text-align: left; /* Ensure text is aligned to the left */
     padding-left: 100px; /* Remove any left padding */
     margin-left: 0; /* Remove any left margin */
-    width: 100%; /* Ensure it fits within the container */
+    width: 80%; /* Ensure it fits within the container */
+    margin: 0 auto; /* Center the text */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }

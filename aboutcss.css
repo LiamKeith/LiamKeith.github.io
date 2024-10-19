@@ -40,6 +40,7 @@ body {
 
 
 h1 {
+    font-size: 3rem;
     display: block;
     color: #ffae00;
     font-weight: bold;
@@ -47,6 +48,7 @@ h1 {
 }
 
 p {
+    font-size: 1rem;
     display: block;
     color: #ffae00;
     white-space: pre-line;

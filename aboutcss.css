@@ -27,6 +27,16 @@ body {
     scroll-snap-align: start; /* Snap alignment */
     text-align: center;
 }
+.scroll {
+    position: fixed; /* Fix it to the bottom */
+    bottom: 0; /* Align to the bottom */
+    width: 200px;
+    z-index: 1000; /* Ensure it stays above other content */
+    background-color: #111111; /* Background color for scroll section */
+    padding: 10px; /* Add padding for space */
+    text-align: center; /* Center text */
+    margin-top: 1000px;
+}
 
 
 h1, p {

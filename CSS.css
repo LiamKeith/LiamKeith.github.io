@@ -61,11 +61,6 @@ h1{
     color: #ffae00;
 }
 
-section{
-    display: flex;
-    align-items: center;
-    margin-top: 30px;
-}
 .section1 {
     background-color: #111111;
 }

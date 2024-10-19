@@ -67,17 +67,17 @@ section{
     margin-top: 30px;
 }
 .section1 {
-    background-color: #111111; /* Red section */
+    background-color: #111111;
 }
 
 .section2 {
-    background-color: #33c4ff; /* Blue section */
+    background-color: #111111; 
 }
 
 .section3 {
-    background-color: #75ff33; /* Green section */
+    background-color: #111111; 
 }
 
 .section4 {
-    background-color: #ff33a8; /* Pink section */
+    background-color: #111111; 
 }

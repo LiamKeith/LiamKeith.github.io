@@ -55,3 +55,6 @@ p {
     background-color: transparent;
 }
 
+.text{
+    flex-wrap: nowrap;
+}

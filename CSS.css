@@ -107,3 +107,7 @@ p{
     color: #ffae00;
     text-decoration: none;
 }
+
+.collapsible:hover .menu-icon{
+    content: url("LB_ICON_DARK_copy-removebg-preview.png")
+}

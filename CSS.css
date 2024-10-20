@@ -90,7 +90,7 @@ p{
 .collapsible-content {
     display: none;
     overflow: hidden;
-    background-color: #111;
+    background-color: transparent;
     text-align: center;
 }
 

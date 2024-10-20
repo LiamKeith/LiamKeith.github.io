@@ -79,7 +79,7 @@ p{
     flex-direction: column; /* Stack children vertically */
     align-items: center; /* Align items to the start */
     text-align: center; /* Ensure text is aligned to the left */
-    padding-left: 100px; /* Remove any left padding */
+    padding-left: 0; /* Remove any left padding */
     margin-left: 0; /* Remove any left margin */
     width: 80%; /* Ensure it fits within the container */
     margin: 0 auto; /* Center the text */

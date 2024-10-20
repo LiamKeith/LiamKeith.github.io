@@ -75,7 +75,7 @@ p{
 }
 
 .collapsible {
-    background-color: #111;
+    background-color: transparent;
     color: #ffae00;
     cursor: pointer;
     padding: 10px;
@@ -94,7 +94,7 @@ p{
 }
 
 .collapsible-content button {
-    background-color: #111;
+    background-color: transparent;
     color: #ffae00;
     border: none;
     padding: 10px;

@@ -77,7 +77,7 @@ p{
 .text {
     display: flex;
     flex-direction: column; /* Stack children vertically */
-    align-items: flex-start; /* Align items to the start */
+    align-items: center; /* Align items to the start */
     text-align: center; /* Ensure text is aligned to the left */
     padding-left: 100px; /* Remove any left padding */
     margin-left: 0; /* Remove any left margin */

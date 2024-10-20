@@ -105,6 +105,7 @@ p{
 }
 
 .collapsible-content button a {
+    background-color: transparent;
     color: #ffae00;
     text-decoration: none;
 }

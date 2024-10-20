@@ -77,3 +77,15 @@ h1 {
     top: 0; /* Set the position from the top of the container */
     text-align: center;
 }
+
+.text {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Align items to the start */
+    text-align: center; /* Ensure text is aligned to the left */
+    padding-left: 0; /* Remove any left padding */
+    margin-left: 0; /* Remove any left margin */
+    width: 80%; /* Ensure it fits within the container */
+    margin: 0 auto; /* Center the text */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}

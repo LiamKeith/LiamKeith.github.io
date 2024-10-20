@@ -74,4 +74,36 @@ p{
     background-color: #111111; 
 }
 
+.collapsible {
+    background-color: #111;
+    color: #ffae00;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+    font-size: 1.5rem;
+}
 
+.collapsible-content {
+    display: none;
+    overflow: hidden;
+    background-color: #111;
+    text-align: center;
+}
+
+.collapsible-content button {
+    background-color: #111;
+    color: #ffae00;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.collapsible-content button a {
+    color: #ffae00;
+    text-decoration: none;
+}

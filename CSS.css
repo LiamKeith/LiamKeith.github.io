@@ -92,6 +92,7 @@ p{
     overflow: hidden;
     background-color: transparent;
     text-align: center;
+    margin-top: 20px;
 }
 
 .collapsible-content button {

@@ -40,6 +40,7 @@ body {
     overflow-y: scroll; /* Enable vertical scrolling */
     scroll-snap-type: y mandatory; /* Enable snap scrolling */
     padding-top: 80px; /* Add padding to the top */
+    align-items: center;
 }
 
 .section {

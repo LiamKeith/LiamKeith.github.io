@@ -94,9 +94,13 @@ p {
     outline: none;
     font-size: 1.5rem;
     margin: 10px 0;
+<<<<<<< HEAD
     display: flex;
     justify-content: center;
     align-items: center;
+=======
+    padding-bottom: 10px;
+>>>>>>> parent of 4b55e49 (Update CSS.css)
 }
 
 /* Style for the collapsible content */

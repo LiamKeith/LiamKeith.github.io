@@ -82,6 +82,10 @@ p{
     text-align: center;
     outline: none;
     font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
 }
 
 .collapsible-content {

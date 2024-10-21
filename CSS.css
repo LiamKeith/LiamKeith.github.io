@@ -20,6 +20,8 @@
     text-align: center; /* Center text */
     margin-top: 1000px;
     background-color: transparent;
+    left: 0;
+    right: 0;
 }
 
 
@@ -51,7 +53,6 @@ body {
     font-size: 2rem;
     color: #111111;
     scroll-snap-align: start; /* Snap alignment */
-    margin-top: 30px;
 }
 
 .logo{

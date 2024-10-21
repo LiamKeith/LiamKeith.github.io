@@ -2,7 +2,6 @@
 .Claim {
     text-align: center;
     color: #ffae00;
-    background-color: transparent;
     padding: 20px; /* Add padding for space */
     position: fixed; /* Fix it to the top */
     top: 0; /* Align to the top */
@@ -39,16 +38,11 @@ body {
     height: 100vh; /* Full viewport height */
     overflow-y: scroll; /* Enable vertical scrolling */
     scroll-snap-type: y mandatory; /* Enable snap scrolling */
-    padding-top: 30px; /* Add padding to the top */
-    display: flex;
-    flex-direction: column; /* Stack children vertically */
-    align-items: center;
 }
 
 .section {
     height: 100vh; /* Each section takes full viewport height */
     display: flex;
-    flex-direction: column; 
     justify-content: center; /* Center content horizontally */
     align-items: center; /* Center content vertically */
     font-size: 2rem;
@@ -95,7 +89,6 @@ p{
     overflow: hidden;
     background-color: transparent;
     text-align: center;
-    margin-top: 20px;
 }
 
 .collapsible-content button {

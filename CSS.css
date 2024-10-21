@@ -48,7 +48,6 @@ body {
     height: 100vh; /* Each section takes full viewport height */
     display: flex;
     flex-direction: column; /* Stack children vertically */
-    justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
     font-size: 2rem;
     color: #111111;

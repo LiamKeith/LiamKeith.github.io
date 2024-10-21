@@ -54,7 +54,7 @@ body {
     margin-top: 30px;
     margin: 0;
     padding: 0;
-    display: block;
+    display: flex;
 }
 .logo{
     margin-top: 100px;

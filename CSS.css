@@ -18,7 +18,8 @@
     padding: 10px; /* Add padding for space */
     text-align: center; /* Center text */
     background-color: transparent;
-    left: 45%; /* Center horizontally */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%);
 }
 
 

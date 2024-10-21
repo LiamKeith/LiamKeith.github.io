@@ -17,10 +17,8 @@
     z-index: 1000; /* Ensure it stays above other content */
     padding: 10px; /* Add padding for space */
     text-align: center; /* Center text */
-    margin-top: 1000px;
     background-color: transparent;
-    left: 0;
-    right: 0;
+    left: 50%; /* Center horizontally */
 }
 
 

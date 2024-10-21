@@ -54,9 +54,10 @@ body {
     scroll-snap-align: start; /* Snap alignment */
 }
 
-.logo{
+/*.logo{
     margin-top: 100px;
 }
+    */
 h1{
     margin-top: 100px;
     color: #ffae00;

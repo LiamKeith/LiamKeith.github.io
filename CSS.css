@@ -20,9 +20,8 @@
     text-align: center; /* Center text */
     margin-top: 1000px;
     background-color: transparent;
-    left: 0;
-    right: 0;
 }
+
 
 * {
     margin: 0;
@@ -93,8 +92,6 @@ p{
     overflow: hidden;
     background-color: transparent;
     text-align: center;
-    padding-top: 20px;
-    margin-top: 20px;
 }
 
 .collapsible-content button {

@@ -85,6 +85,8 @@ p{
     outline: none;
     font-size: 1.5rem;
     padding-right: 20px;
+    left: 0;
+    right: 0;
 }
 
 .collapsible-content {
@@ -92,6 +94,7 @@ p{
     overflow: hidden;
     background-color: transparent;
     text-align: center;
+    padding-top: 10px;
 }
 
 .collapsible-content button {

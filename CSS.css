@@ -22,7 +22,6 @@
     background-color: transparent;
 }
 
-
 * {
     margin: 0;
     padding: 0;
@@ -85,6 +84,7 @@ p{
     text-align: center;
     outline: none;
     font-size: 1.5rem;
+    padding-right: 20px;
 }
 
 .collapsible-content {

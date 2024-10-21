@@ -20,6 +20,8 @@
     text-align: center; /* Center text */
     margin-top: 1000px;
     background-color: transparent;
+    left: 0;
+    right: 0;
 }
 
 * {

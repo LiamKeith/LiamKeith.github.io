@@ -1,8 +1,8 @@
-body {
-    background-color: lightblue; /* Fallback color */
+.sprite {
     background-image: url("spriteimages/Terrain (32x32).png");
     width: 32px;
     height: 32px;
     background-position: -32px -96px;
     background-repeat: no-repeat;
+    background-size: auto;
 }

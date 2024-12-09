@@ -1,4 +1,5 @@
 body {
+    background-color: lightblue; /* Fallback color */
     background-image: url("spriteimages\Terrain (32x32).png");
     background-position: 0 0;
     background-repeat: repeat;

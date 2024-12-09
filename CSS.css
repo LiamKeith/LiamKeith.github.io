@@ -1,9 +1,9 @@
-body {
+.background {
     height: 100vh;
     width: 100vw;
     background-color: red; /* backup */
     background-image: url("spriteimages/Terrain (32x32).png");
-    background-position: -64px -224px;
+    background-position: -64px -256px;
     background-repeat: repeat;
     background-size: auto;
 }

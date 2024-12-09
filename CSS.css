@@ -1,6 +1,6 @@
 body {
     background-color: lightblue; /* Fallback color */
-    background-image: url("spriteimages\Terrain (32x32).png");
-    background-position: -32 -96;
+    background-image: url("spriteimages/Terrain (32x32).png");
+    background-position: -32px -96px;
     background-repeat: no-repeat;
 }

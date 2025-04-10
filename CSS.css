@@ -15,7 +15,7 @@ body{
     top: 64px;
     position: fixed;
     background-image: url("spriteimages/arcade1.png");
-    height: 64px;
-    width: 64px;
+    height: 55px;
+    width: 45px;
     z-index: 1;
 }

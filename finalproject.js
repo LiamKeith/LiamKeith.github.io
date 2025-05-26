@@ -9,55 +9,20 @@ var perspectiveExample3D = function () {
     var colorsArray = [];
 
     var near = 0.3;
-    var far = 50.0;
+    var far = 500.0;
     var fovy = 45.0; // Field-of-view in Y direction angle (in degrees)
     var aspect = 1.0; // Viewport aspect ratio
 
     var modelViewMatrix, projectionMatrix;
     var modelViewMatrixLoc, projectionMatrixLoc;
-    var eye = vec3(0.0, 0.0, 20.0); // Position the camera along the positive Z-axis
-    var at = vec3(0.0, 0.0, 0.0);   // Look at the center of the cube
+    var eye = vec3(0.0, 5.0, 75.0); // Raise the camera to y = 5.0
+    var at = vec3(0.0, 1.0, 0.0);   // Adjust the look-at point to the cube's center
     const up = vec3(0.0, 1.0, 0.0); // Keep the up direction aligned with the Y-axis
 
     let yaw = 180.0; // Horizontal rotation
     let pitch = 0.0; // Vertical rotation
     const keyState = {}; // Object to track key states
 
-    function colorCube() {
-        const vertices = [
-            vec4(-0.5, -0.5, 0.5, 1.0),
-            vec4(-0.5, 0.5, 0.5, 1.0),
-            vec4(0.5, 0.5, 0.5, 1.0),
-            vec4(0.5, -0.5, 0.5, 1.0),
-            vec4(-0.5, -0.5, -0.5, 1.0),
-            vec4(-0.5, 0.5, -0.5, 1.0),
-            vec4(0.5, 0.5, -0.5, 1.0),
-            vec4(0.5, -0.5, -0.5, 1.0),
-        ];
-
-        const colors = [
-            vec4(1.0, 0.0, 0.0, 1.0), // Red
-            vec4(0.0, 1.0, 0.0, 1.0), // Green
-            vec4(0.0, 0.0, 1.0, 1.0), // Blue
-            vec4(1.0, 1.0, 0.0, 1.0), // Yellow
-            vec4(1.0, 0.0, 1.0, 1.0), // Magenta
-            vec4(0.0, 1.0, 1.0, 1.0), // Cyan
-        ];
-
-        function quad(a, b, c, d, color) {
-            positionsArray.push(vertices[a], vertices[b], vertices[c]);
-            colorsArray.push(color, color, color);
-            positionsArray.push(vertices[a], vertices[c], vertices[d]);
-            colorsArray.push(color, color, color);
-        }
-
-        quad(1, 0, 3, 2, colors[0]); // Front face
-        quad(2, 3, 7, 6, colors[1]); // Right face
-        quad(3, 0, 4, 7, colors[2]); // Bottom face
-        quad(6, 5, 1, 2, colors[3]); // Top face
-        quad(4, 5, 6, 7, colors[4]); // Back face
-        quad(5, 4, 0, 1, colors[5]); // Left face
-    }
 
     window.onload = function init() {
         canvas = document.getElementById("gl-canvas");
@@ -104,68 +69,6 @@ var perspectiveExample3D = function () {
 
     const loopColors = []; // Array to store the colors of each loop
 
-    function addThickLoops(activeLoops) {
-        const loopRadius = 2.0; // Radius of the main loop
-        const tubeRadius = 0.3; // Radius of the tube (thickness)
-        const loopSegments = 36; // Number of segments in the main loop
-        const tubeSegments = 18; // Number of segments in the tube (cross-section)
-
-        console.log("Rendering loops with centers:", activeLoops);
-
-        for (const center of activeLoops) {
-            const loopColor = vec4(1.0, 1.0, 0.0, 1.0); // Yellow color for the loop
-
-            for (let i = 0; i < loopSegments; i++) {
-                const angle1 = (i / loopSegments) * 2 * Math.PI;
-                const angle2 = ((i + 1) / loopSegments) * 2 * Math.PI;
-
-                for (let j = 0; j < tubeSegments; j++) {
-                    const tubeAngle1 = (j / tubeSegments) * 2 * Math.PI;
-                    const tubeAngle2 = ((j + 1) / tubeSegments) * 2 * Math.PI;
-
-                    // Calculate the positions of the four vertices of each quad
-                    const p1 = vec4(
-                        center[0] + (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.cos(angle1),
-                        center[1] + tubeRadius * Math.sin(tubeAngle1),
-                        center[2] + (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.sin(angle1),
-                        1.0
-                    );
-
-                    const p2 = vec4(
-                        center[0] + (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.cos(angle1),
-                        center[1] + tubeRadius * Math.sin(tubeAngle2),
-                        center[2] + (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.sin(angle1),
-                        1.0
-                    );
-
-                    const p3 = vec4(
-                        center[0] + (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.cos(angle2),
-                        center[1] + tubeRadius * Math.sin(tubeAngle2),
-                        center[2] + (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.sin(angle2),
-                        1.0
-                    );
-
-                    const p4 = vec4(
-                        center[0] + (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.cos(angle2),
-                        center[1] + tubeRadius * Math.sin(tubeAngle1),
-                        center[2] + (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.sin(angle2),
-                        1.0
-                    );
-
-                    // Add two triangles for each quad
-                    positionsArray.push(p1, p2, p3);
-                    positionsArray.push(p1, p3, p4);
-
-                    // Add the current color for all vertices
-                    colorsArray.push(loopColor, loopColor, loopColor);
-                    colorsArray.push(loopColor, loopColor, loopColor);
-                }
-            }
-        }
-
-        console.log("Positions array length:", positionsArray.length);
-        console.log("Colors array length:", colorsArray.length);
-    }
 
     const loopCenters = [
         vec3(10.0, 3.0, 10.0),  // Center of the first loop
@@ -175,48 +78,197 @@ var perspectiveExample3D = function () {
         vec3(0.0, 15.0, -2.0) // Center of the fifth loop
     ];
 
+
+    function addSpheres(activeCenters) {
+        const sphereRadius = 2.0; // Radius of the sphere
+        const latitudeSegments = 18; // Number of segments along the latitude
+        const longitudeSegments = 36; // Number of segments along the longitude
+
+        console.log("Rendering spheres with centers:", activeCenters);
+
+        for (const center of activeCenters) {
+            const sphereColor = vec4(1.0, 1.0, 0.0, 1.0); // Yellow color for the sphere
+
+            for (let lat = 0; lat < latitudeSegments; lat++) {
+                const theta1 = (lat / latitudeSegments) * Math.PI; // Latitude angle 1
+                const theta2 = ((lat + 1) / latitudeSegments) * Math.PI; // Latitude angle 2
+
+                for (let lon = 0; lon < longitudeSegments; lon++) {
+                    const phi1 = (lon / longitudeSegments) * 2 * Math.PI; // Longitude angle 1
+                    const phi2 = ((lon + 1) / longitudeSegments) * 2 * Math.PI; // Longitude angle 2
+
+                    // Calculate the positions of the four vertices of each quad
+                    const p1 = vec4(
+                        center[0] + sphereRadius * Math.sin(theta1) * Math.cos(phi1),
+                        center[1] + sphereRadius * Math.cos(theta1),
+                        center[2] + sphereRadius * Math.sin(theta1) * Math.sin(phi1),
+                        1.0
+                    );
+
+                    const p2 = vec4(
+                        center[0] + sphereRadius * Math.sin(theta2) * Math.cos(phi1),
+                        center[1] + sphereRadius * Math.cos(theta2),
+                        center[2] + sphereRadius * Math.sin(theta2) * Math.sin(phi1),
+                        1.0
+                    );
+
+                    const p3 = vec4(
+                        center[0] + sphereRadius * Math.sin(theta2) * Math.cos(phi2),
+                        center[1] + sphereRadius * Math.cos(theta2),
+                        center[2] + sphereRadius * Math.sin(theta2) * Math.sin(phi2),
+                        1.0
+                    );
+
+                    const p4 = vec4(
+                        center[0] + sphereRadius * Math.sin(theta1) * Math.cos(phi2),
+                        center[1] + sphereRadius * Math.cos(theta1),
+                        center[2] + sphereRadius * Math.sin(theta1) * Math.sin(phi2),
+                        1.0
+                    );
+
+                    // Add two triangles for each quad
+                    positionsArray.push(p1, p2, p3);
+                    positionsArray.push(p1, p3, p4);
+
+                    // Add the current color for all vertices
+                    colorsArray.push(sphereColor, sphereColor, sphereColor);
+                    colorsArray.push(sphereColor, sphereColor, sphereColor);
+                }
+            }
+        }
+
+        console.log("Positions array length:", positionsArray.length);
+        console.log("Colors array length:", colorsArray.length);
+    }
+
+    let velocity = vec3(0.0, 0.0, 0.0); // Initialize velocity
+    const acceleration = 0.005; // Acceleration when moving forward
+    const friction = 0.98; // Friction to slow down when no key is pressed
+
+    const collisionRadius = 3.0; // Larger collision radius for the spheres
+
+    function checkCollisions() {
+        for (let i = loopCenters.length - 1; i >= 0; i--) {
+            const loopCenter = loopCenters[i];
+            const distance = length(subtract(eye, loopCenter)); // Distance from the camera to the sphere center
+
+            // Check if the camera is within the collision radius
+            if (distance < collisionRadius) {
+                console.log(`Collision detected with sphere at index ${i}`);
+                loopCenters.splice(i, 1); // Remove the sphere from the array
+            }
+        }
+    }
+
+    function addGrayPlane() {
+        const planeLength = 350.0; // Increased length of the plane along the Z-axis
+        const planeWidth = 40.0;  // Width of the plane
+        const planeColor = vec4(0.5, 0.5, 0.5, 1.0); // Gray color
+
+        const vertices = [
+            vec4(-planeWidth / 2, 0.0, -planeLength / 2, 1.0), // Bottom-left
+            vec4(planeWidth / 2, 0.0, -planeLength / 2, 1.0),  // Bottom-right
+            vec4(planeWidth / 2, 0.0, planeLength / 2, 1.0),   // Top-right
+            vec4(-planeWidth / 2, 0.0, planeLength / 2, 1.0),  // Top-left
+        ];
+
+        // Add two triangles to form the plane
+        positionsArray.push(vertices[0], vertices[1], vertices[2]);
+        positionsArray.push(vertices[0], vertices[2], vertices[3]);
+
+        // Add the gray color for all vertices
+        colorsArray.push(planeColor, planeColor, planeColor);
+        colorsArray.push(planeColor, planeColor, planeColor);
+    }
+
+    function addRunwayMarkings() {
+        const planeLength = 350.0; // Length of the runway
+        const planeWidth = 40.0;  // Width of the runway
+        const dashLength = 5.0;   // Length of each yellow dash
+        const dashWidth = 1.0;    // Width of each yellow dash
+        const sideLineWidth = 0.5; // Width of the white side lines
+        const sideOffset = 2.0;   // Distance of the side lines from the edges
+
+        const yellowColor = vec4(1.0, 1.0, 0.0, 1.0); // Yellow color for center dashes
+        const whiteColor = vec4(1.0, 1.0, 1.0, 1.0);  // White color for side lines
+
+        // Add yellow dashes to the center of the runway
+        for (let z = -planeLength / 2; z < planeLength / 2; z += dashLength * 2) {
+            const vertices = [
+                vec4(-dashWidth / 2, 0.01, z, 1.0), // Bottom-left
+                vec4(dashWidth / 2, 0.01, z, 1.0),  // Bottom-right
+                vec4(dashWidth / 2, 0.01, z + dashLength, 1.0), // Top-right
+                vec4(-dashWidth / 2, 0.01, z + dashLength, 1.0), // Top-left
+            ];
+
+            positionsArray.push(vertices[0], vertices[1], vertices[2]);
+            positionsArray.push(vertices[0], vertices[2], vertices[3]);
+
+            colorsArray.push(yellowColor, yellowColor, yellowColor);
+            colorsArray.push(yellowColor, yellowColor, yellowColor);
+        }
+
+        // Add white side lines
+        const sideLineZStart = -planeLength / 2;
+        const sideLineZEnd = planeLength / 2;
+
+        // Left side line
+        const leftVertices = [
+            vec4(-planeWidth / 2 + sideOffset, 0.01, sideLineZStart, 1.0), // Bottom-left
+            vec4(-planeWidth / 2 + sideOffset + sideLineWidth, 0.01, sideLineZStart, 1.0), // Bottom-right
+            vec4(-planeWidth / 2 + sideOffset + sideLineWidth, 0.01, sideLineZEnd, 1.0), // Top-right
+            vec4(-planeWidth / 2 + sideOffset, 0.01, sideLineZEnd, 1.0), // Top-left
+        ];
+
+        positionsArray.push(leftVertices[0], leftVertices[1], leftVertices[2]);
+        positionsArray.push(leftVertices[0], leftVertices[2], leftVertices[3]);
+
+        colorsArray.push(whiteColor, whiteColor, whiteColor);
+        colorsArray.push(whiteColor, whiteColor, whiteColor);
+
+        // Right side line
+        const rightVertices = [
+            vec4(planeWidth / 2 - sideOffset, 0.01, sideLineZStart, 1.0), // Bottom-left
+            vec4(planeWidth / 2 - sideOffset - sideLineWidth, 0.01, sideLineZStart, 1.0), // Bottom-right
+            vec4(planeWidth / 2 - sideOffset - sideLineWidth, 0.01, sideLineZEnd, 1.0), // Top-right
+            vec4(planeWidth / 2 - sideOffset, 0.01, sideLineZEnd, 1.0), // Top-left
+        ];
+
+        positionsArray.push(rightVertices[0], rightVertices[1], rightVertices[2]);
+        positionsArray.push(rightVertices[0], rightVertices[2], rightVertices[3]);
+
+        colorsArray.push(whiteColor, whiteColor, whiteColor);
+        colorsArray.push(whiteColor, whiteColor, whiteColor);
+    }
+
     var render = function () {
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
         positionsArray = [];
         colorsArray = [];
 
-        colorCube(); // Add the cube
+        addGrayPlane(); // Add the long gray plane
+        addRunwayMarkings(); // Add yellow dashes and white side lines
+        addSpheres(loopCenters); // Add the spheres with updated centers
 
-        // Check if the camera is inside any loop
-        const loopRadius = 2.0; // Radius of the main loop
+        checkCollisions(); // Check for collisions with spheres
 
-        for (let i = loopCenters.length - 1; i >= 0; i--) {
-            const loopCenter = loopCenters[i];
-            const distance = length(subtract(eye, loopCenter)); // Distance from the camera to the loop center
-
-            console.log(`Loop ${i}: Distance = ${distance}, Eye = ${eye}`);
-            console.log(`Loop ${i} removed`);
-
-            // Remove the loop if the camera is close enough
-            if (distance < loopRadius) {
-                console.log(`Loop ${i} removed`);
-                loopCenters.splice(i, 1); // Remove the loop from the array
-            }
-        }
-
-        addThickLoops(loopCenters); // Add the loops with updated centers
-
-        const moveSpeed = 0.05;
         const forward = getCameraDirection();
         const right = cross(forward, up);
 
-        // Apply movements based on key states
-        if (keyState[" "]) { // Space key for upward movement
-            eye = add(eye, scale(moveSpeed, forward)); // Move up
+        // Apply acceleration when moving forward
+        if (keyState[" "]) {
+            velocity = add(velocity, scale(acceleration, forward)); // Accelerate forward
         }
+
+        // Apply friction to gradually slow down
+        velocity = scale(friction, velocity);
+
+        // Update the camera position based on velocity
+        eye = add(eye, velocity);
 
         // Handle camera rotation with Arrow Keys
         const rotationSpeed = 2.0; // Increased rotation speed
-        if (keyState["w"]) {
-            pitch += rotationSpeed; // Increase pitch to tilt upward
-            pitch = Math.min(pitch, 89.0); // Clamp pitch to avoid flipping
-        }
         if (keyState["s"]) {
             pitch -= rotationSpeed; // Decrease pitch to tilt downward
             pitch = Math.max(pitch, -89.0); // Clamp pitch to avoid flipping
@@ -226,6 +278,10 @@ var perspectiveExample3D = function () {
         }
         if (keyState["d"]) {
             yaw -= rotationSpeed; // Decrease yaw to rotate right
+        }
+        if (keyState["w"]) {
+            pitch += rotationSpeed; // Increase pitch to tilt upward
+            pitch = Math.min(pitch, 89.0); // Clamp pitch to avoid flipping
         }
 
         // Update the look-at point

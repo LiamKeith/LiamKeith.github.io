@@ -15,9 +15,9 @@ var perspectiveExample3D = function () {
 
     var modelViewMatrix, projectionMatrix;
     var modelViewMatrixLoc, projectionMatrixLoc;
-    var eye = vec3(0.0, 0.0, 10.0); // Camera position
-    var at = vec3(0.0, 0.0, 0.0); // Look-at point
-    const up = vec3(0.0, 1.0, 0.0); // Up direction
+    var eye = vec3(0.0, 0.0, 20.0); // Position the camera along the positive Z-axis
+    var at = vec3(0.0, 0.0, 0.0);   // Look at the center of the cube
+    const up = vec3(0.0, 1.0, 0.0); // Keep the up direction aligned with the Y-axis
 
     let yaw = 180.0; // Horizontal rotation
     let pitch = 0.0; // Vertical rotation
@@ -101,125 +101,19 @@ var perspectiveExample3D = function () {
         return vec3(x, y, z);
     }
 
-    function addLoop() {
-        const loopRadius = 2.0; // Radius of the loop
-        const loopSegments = 36; // Number of segments in the loop
-        const loopHeight = 3.0; // Height above the square
 
-        const loopColor = vec4(1.0, 1.0, 0.0, 1.0); // Yellow color for the loop
+    const loopColors = []; // Array to store the colors of each loop
 
-        for (let i = 0; i < loopSegments; i++) {
-            const angle1 = (i / loopSegments) * 2 * Math.PI;
-            const angle2 = ((i + 1) / loopSegments) * 2 * Math.PI;
-
-            const x1 = loopRadius * Math.cos(angle1);
-            const z1 = loopRadius * Math.sin(angle1);
-            const x2 = loopRadius * Math.cos(angle2);
-            const z2 = loopRadius * Math.sin(angle2);
-
-            // Add two points for each segment
-            positionsArray.push(
-                vec4(x1, loopHeight, z1, 1.0),
-                vec4(x2, loopHeight, z2, 1.0)
-            );
-
-            // Add the same color for both points
-            colorsArray.push(loopColor, loopColor);
-        }
-    }
-
-    function addThickLoop() {
+    function addThickLoops(activeLoops) {
         const loopRadius = 2.0; // Radius of the main loop
         const tubeRadius = 0.3; // Radius of the tube (thickness)
         const loopSegments = 36; // Number of segments in the main loop
         const tubeSegments = 18; // Number of segments in the tube (cross-section)
-        const loopHeight = 3.0; // Height above the square
 
-        const loopColor = vec4(1.0, 1.0, 0.0, 1.0); // Yellow color for the loop
+        console.log("Rendering loops with centers:", activeLoops);
 
-        // Rotation matrix for 90 degrees around the X-axis
-        const rotationMatrix = mat4(
-            1, 0, 0, 0,
-            0, 0, -1, 0,
-            0, 1, 0, 0,
-            0, 0, 0, 1
-        );
-
-        for (let i = 0; i < loopSegments; i++) {
-            const angle1 = (i / loopSegments) * 2 * Math.PI;
-            const angle2 = ((i + 1) / loopSegments) * 2 * Math.PI;
-
-            for (let j = 0; j < tubeSegments; j++) {
-                const tubeAngle1 = (j / tubeSegments) * 2 * Math.PI;
-                const tubeAngle2 = ((j + 1) / tubeSegments) * 2 * Math.PI;
-
-                // Calculate the positions of the four vertices of each quad
-                const p1 = vec4(
-                    (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.cos(angle1),
-                    loopHeight + tubeRadius * Math.sin(tubeAngle1),
-                    (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.sin(angle1),
-                    1.0
-                );
-
-                const p2 = vec4(
-                    (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.cos(angle1),
-                    loopHeight + tubeRadius * Math.sin(tubeAngle2),
-                    (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.sin(angle1),
-                    1.0
-                );
-
-                const p3 = vec4(
-                    (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.cos(angle2),
-                    loopHeight + tubeRadius * Math.sin(tubeAngle2),
-                    (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.sin(angle2),
-                    1.0
-                );
-
-                const p4 = vec4(
-                    (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.cos(angle2),
-                    loopHeight + tubeRadius * Math.sin(tubeAngle1),
-                    (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.sin(angle2),
-                    1.0
-                );
-
-                // Apply the rotation matrix to each vertex
-                const rotatedP1 = mult(rotationMatrix, p1);
-                const rotatedP2 = mult(rotationMatrix, p2);
-                const rotatedP3 = mult(rotationMatrix, p3);
-                const rotatedP4 = mult(rotationMatrix, p4);
-
-                // Add two triangles for each quad
-                positionsArray.push(rotatedP1, rotatedP2, rotatedP3);
-                positionsArray.push(rotatedP1, rotatedP3, rotatedP4);
-
-                // Add the same color for all vertices
-                colorsArray.push(loopColor, loopColor, loopColor);
-                colorsArray.push(loopColor, loopColor, loopColor);
-            }
-        }
-    }
-
-    function addThickLoops() {
-        const loopRadius = 2.0; // Radius of the main loop
-        const tubeRadius = 0.3; // Radius of the tube (thickness)
-        const loopSegments = 36; // Number of segments in the main loop
-        const tubeSegments = 18; // Number of segments in the tube (cross-section)
-        const totalLoops = 10; // Number of loops
-        const spacing = 1.5; // Vertical spacing between loops
-        const baseHeight = 3.0; // Starting height of the first loop
-
-        const loopColor = vec4(1.0, 1.0, 0.0, 1.0); // Yellow color for the loops
-
-        // Rotation matrix for 90 degrees around the X-axis
-        const rotationMatrix = mat4(
-            1, 0, 0, 0,
-            0, 0, -1, 0,
-            0, 1, 0, 0,
-            0, 0, 0, 1
-        );
-
-        for (let loopIndex = 0; loopIndex < totalLoops; loopIndex++) {
-            const loopHeight = baseHeight + loopIndex * spacing; // Calculate height for this loop
+        for (const center of activeLoops) {
+            const loopColor = vec4(1.0, 1.0, 0.0, 1.0); // Yellow color for the loop
 
             for (let i = 0; i < loopSegments; i++) {
                 const angle1 = (i / loopSegments) * 2 * Math.PI;
@@ -231,50 +125,55 @@ var perspectiveExample3D = function () {
 
                     // Calculate the positions of the four vertices of each quad
                     const p1 = vec4(
-                        (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.cos(angle1),
-                        loopHeight + tubeRadius * Math.sin(tubeAngle1),
-                        (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.sin(angle1),
+                        center[0] + (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.cos(angle1),
+                        center[1] + tubeRadius * Math.sin(tubeAngle1),
+                        center[2] + (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.sin(angle1),
                         1.0
                     );
 
                     const p2 = vec4(
-                        (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.cos(angle1),
-                        loopHeight + tubeRadius * Math.sin(tubeAngle2),
-                        (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.sin(angle1),
+                        center[0] + (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.cos(angle1),
+                        center[1] + tubeRadius * Math.sin(tubeAngle2),
+                        center[2] + (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.sin(angle1),
                         1.0
                     );
 
                     const p3 = vec4(
-                        (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.cos(angle2),
-                        loopHeight + tubeRadius * Math.sin(tubeAngle2),
-                        (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.sin(angle2),
+                        center[0] + (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.cos(angle2),
+                        center[1] + tubeRadius * Math.sin(tubeAngle2),
+                        center[2] + (loopRadius + tubeRadius * Math.cos(tubeAngle2)) * Math.sin(angle2),
                         1.0
                     );
 
                     const p4 = vec4(
-                        (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.cos(angle2),
-                        loopHeight + tubeRadius * Math.sin(tubeAngle1),
-                        (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.sin(angle2),
+                        center[0] + (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.cos(angle2),
+                        center[1] + tubeRadius * Math.sin(tubeAngle1),
+                        center[2] + (loopRadius + tubeRadius * Math.cos(tubeAngle1)) * Math.sin(angle2),
                         1.0
                     );
 
-                    // Apply the rotation matrix to each vertex
-                    const rotatedP1 = mult(rotationMatrix, p1);
-                    const rotatedP2 = mult(rotationMatrix, p2);
-                    const rotatedP3 = mult(rotationMatrix, p3);
-                    const rotatedP4 = mult(rotationMatrix, p4);
-
                     // Add two triangles for each quad
-                    positionsArray.push(rotatedP1, rotatedP2, rotatedP3);
-                    positionsArray.push(rotatedP1, rotatedP3, rotatedP4);
+                    positionsArray.push(p1, p2, p3);
+                    positionsArray.push(p1, p3, p4);
 
-                    // Add the same color for all vertices
+                    // Add the current color for all vertices
                     colorsArray.push(loopColor, loopColor, loopColor);
                     colorsArray.push(loopColor, loopColor, loopColor);
                 }
             }
         }
+
+        console.log("Positions array length:", positionsArray.length);
+        console.log("Colors array length:", colorsArray.length);
     }
+
+    const loopCenters = [
+        vec3(10.0, 3.0, 10.0),  // Center of the first loop
+        vec3(2.0, 6.0, 0.0),  // Center of the second loop
+        vec3(-2.0, 9.0, 0.0), // Center of the third loop
+        vec3(0.0, 12.0, 2.0), // Center of the fourth loop
+        vec3(0.0, 15.0, -2.0) // Center of the fifth loop
+    ];
 
     var render = function () {
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -283,46 +182,49 @@ var perspectiveExample3D = function () {
         colorsArray = [];
 
         colorCube(); // Add the cube
-        addThickLoops(); // Add 10 thick loops above the square
+
+        // Check if the camera is inside any loop
+        const loopRadius = 2.0; // Radius of the main loop
+
+        for (let i = loopCenters.length - 1; i >= 0; i--) {
+            const loopCenter = loopCenters[i];
+            const distance = length(subtract(eye, loopCenter)); // Distance from the camera to the loop center
+
+            console.log(`Loop ${i}: Distance = ${distance}, Eye = ${eye}`);
+            console.log(`Loop ${i} removed`);
+
+            // Remove the loop if the camera is close enough
+            if (distance < loopRadius) {
+                console.log(`Loop ${i} removed`);
+                loopCenters.splice(i, 1); // Remove the loop from the array
+            }
+        }
+
+        addThickLoops(loopCenters); // Add the loops with updated centers
 
         const moveSpeed = 0.05;
         const forward = getCameraDirection();
         const right = cross(forward, up);
 
         // Apply movements based on key states
-        if (keyState["w"]) {
-            eye = add(eye, scale(moveSpeed, forward)); // Move forward
-        }
-        if (keyState["s"]) {
-            eye = subtract(eye, scale(moveSpeed, forward)); // Move backward
-        }
-        if (keyState["a"]) {
-            eye = subtract(eye, scale(moveSpeed, right)); // Move left
-        }
-        if (keyState["d"]) {
-            eye = add(eye, scale(moveSpeed, right)); // Move right
-        }
         if (keyState[" "]) { // Space key for upward movement
-            eye = add(eye, vec3(0.0, moveSpeed, 0.0)); // Move up
-        }
-        if (keyState["Shift"]) { // Shift key for downward movement
-            eye = subtract(eye, vec3(0.0, moveSpeed, 0.0)); // Move down
+            eye = add(eye, scale(moveSpeed, forward)); // Move up
         }
 
         // Handle camera rotation with Arrow Keys
-        const rotationSpeed = 0.5;
-        if (keyState["ArrowUp"]) {
+        const rotationSpeed = 2.0; // Increased rotation speed
+        if (keyState["w"]) {
             pitch += rotationSpeed; // Increase pitch to tilt upward
             pitch = Math.min(pitch, 89.0); // Clamp pitch to avoid flipping
         }
-        if (keyState["ArrowDown"]) {
+        if (keyState["s"]) {
             pitch -= rotationSpeed; // Decrease pitch to tilt downward
             pitch = Math.max(pitch, -89.0); // Clamp pitch to avoid flipping
         }
-        if (keyState["ArrowLeft"]) {
+        if (keyState["a"]) {
             yaw += rotationSpeed; // Increase yaw to rotate left
         }
-        if (keyState["ArrowRight"]) {
+        if (keyState["d"]) {
             yaw -= rotationSpeed; // Decrease yaw to rotate right
         }
 

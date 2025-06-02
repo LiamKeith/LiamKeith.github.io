@@ -404,6 +404,52 @@ var perspectiveExample3D = function () {
         }
     }
 
+    function addRing(center, normal, radius = 4.0, tubeRadius = 0.5, segments = 48, tubeSegments = 12, color = vec4(0.2, 0.6, 1.0, 1.0)) {
+        // Create a torus (ring) centered at 'center', oriented by 'normal'
+        // 'radius' is the ring radius, 'tubeRadius' is the thickness
+
+        // Find two vectors perpendicular to the normal
+        let up = Math.abs(normal[1]) > 0.99 ? vec3(1,0,0) : vec3(0,1,0);
+        let tangent = normalize(cross(normal, up));
+        let bitangent = normalize(cross(normal, tangent));
+
+        for (let i = 0; i < segments; ++i) {
+            let theta1 = (i / segments) * 2 * Math.PI;
+            let theta2 = ((i + 1) / segments) * 2 * Math.PI;
+
+            for (let j = 0; j < tubeSegments; ++j) {
+                let phi1 = (j / tubeSegments) * 2 * Math.PI;
+                let phi2 = ((j + 1) / tubeSegments) * 2 * Math.PI;
+
+                // Four points of the quad
+                function torusPoint(theta, phi) {
+                    // Point on the ring circle
+                    let circle = add(
+                        scale(Math.cos(theta), tangent),
+                        scale(Math.sin(theta), bitangent)
+                    );
+                    // Point on the tube circle
+                    let tube = add(
+                        scale(Math.cos(phi), circle),
+                        scale(Math.sin(phi), normal)
+                    );
+                    return add(center, add(scale(radius, circle), scale(tubeRadius, tube)));
+                }
+
+                let p1 = torusPoint(theta1, phi1);
+                let p2 = torusPoint(theta2, phi1);
+                let p3 = torusPoint(theta2, phi2);
+                let p4 = torusPoint(theta1, phi2);
+
+                // Two triangles per quad
+                positionsArray.push(p1, p2, p3);
+                positionsArray.push(p1, p3, p4);
+                colorsArray.push(color, color, color);
+                colorsArray.push(color, color, color);
+            }
+        }
+    }
+
     var render = function () {
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
@@ -416,7 +462,11 @@ var perspectiveExample3D = function () {
         addGrayPlane();
         addRunwayMarkings();
         addSpheres(loopCenters);
-        
+
+        // Example: Add three rings at different positions
+        addRing(vec3(0, 8, 40), vec3(0, 1, 0));      // Ring above runway
+        addRing(vec3(-15, 12, 0), vec3(0, 0, 1));    // Ring facing sideways
+        addRing(vec3(20, 20, -30), vec3(1, 0, 0));   // Ring facing another direction
 
         checkCollisions(); // Check for collisions with spheres
 

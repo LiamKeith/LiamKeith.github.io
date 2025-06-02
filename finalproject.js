@@ -21,11 +21,13 @@ var perspectiveExample3D = function () {
 
     let yaw = 180.0; // Horizontal rotation
     let pitch = 0.0; // Vertical rotation
+    let roll = 0.0; // Camera roll angle in degrees
     const keyState = {}; // Object to track key states
     
     let timerStarted = false;
     let startTime = 0;
     let endTime = 0;
+    let forward = vec3(0.0, 0.0, -1.0); // Initial forward direction
 
     window.onload = function init() {
         canvas = document.getElementById("gl-canvas");
@@ -79,6 +81,29 @@ var perspectiveExample3D = function () {
         const y = Math.sin(radians(pitch));
         const z = Math.cos(radians(pitch)) * Math.cos(radians(yaw));
         return vec3(x, y, z);
+    }
+
+    function getCameraUp(forward) {
+        // Start with world up
+        let upVec = vec3(0.0, 1.0, 0.0);
+
+        // Compute right vector
+        let right = cross(forward, upVec);
+
+        // Convert roll to radians
+        let rollRad = radians(roll);
+
+        // Rotate up vector around the forward axis by roll angle
+        let upRotated = add(
+            scale(Math.cos(rollRad), upVec),
+            scale(Math.sin(rollRad), right)
+        );
+
+        return normalize(upRotated);
+    }
+
+    function getCameraRight(forward, upVec) {
+        return normalize(cross(upVec, forward));
     }
 
     const loopColors = []; // Array to store the colors of each loop
@@ -402,7 +427,6 @@ var perspectiveExample3D = function () {
         }
         // --------------------------------------------
 
-        const forward = getCameraDirection();
         const right = cross(forward, up);
 
         // Apply acceleration when moving forward
@@ -427,10 +451,12 @@ var perspectiveExample3D = function () {
             eye[1] < skyboxYMin  || eye[1] > skyboxYMax ||
             eye[2] < -skyboxHalf || eye[2] > skyboxHalf
         ) {
-            eye = vec3(0.0, 5.0, 75.0); // Reset to starting position
-            velocity = vec3(0.0, 0.0, 0.0); // Reset velocity
-            yaw = 180.0;
+            eye = vec3(0.0, 5.0, 75.0);        // Reset camera position
+            forward = vec3(0.0, 0.0, -1.0);    // Reset camera facing direction
+            roll = 0.0;                        // Reset roll
+            // If you use pitch/yaw elsewhere, reset them too:
             pitch = 0.0;
+            yaw = 180.0;
 
             // Reset spheres
             loopCenters.length = 0;
@@ -462,24 +488,47 @@ var perspectiveExample3D = function () {
         updateTimerDisplay();
 
         // Handle camera rotation with Arrow Keys
-        const rotationSpeed = 2.0; // Increased rotation speed
-        if (keyState["s"]) {
-            pitch -= rotationSpeed; // Decrease pitch to tilt downward
-            pitch = Math.max(pitch, -89.0); // Clamp pitch to avoid flipping
+        const rotationSpeed = 2.0; // degrees per frame
+
+        // Get the current forward and up vectors
+        let upVec = getCameraUp(forward);
+        let rightVec = getCameraRight(forward, upVec);
+
+        if (keyState["w"]) {
+            let angle = radians(rotationSpeed);
+            forward = normalize(
+                add(
+                    scale(Math.cos(angle), forward),
+                    scale(Math.sin(angle), upVec)
+                )
+            );
         }
+        if (keyState["s"]) {
+            let angle = radians(-rotationSpeed);
+            forward = normalize(
+                add(
+                    scale(Math.cos(angle), forward),
+                    scale(Math.sin(angle), upVec)
+                )
+            );
+        }
+        
+        const rollSpeed = 2.0; // Roll speed in degrees per frame
+
         if (keyState["a"]) {
-            yaw += rotationSpeed; // Increase yaw to rotate left
+            roll -= rollSpeed; // Roll left
         }
         if (keyState["d"]) {
-            yaw -= rotationSpeed; // Decrease yaw to rotate right
-        }
-        if (keyState["w"]) {
-            pitch += rotationSpeed; // Increase pitch to tilt upward
-            pitch = Math.min(pitch, 89.0); // Clamp pitch to avoid flipping
+            roll += rollSpeed; // Roll right
         }
 
         // Update the look-at point
         at = add(eye, forward);
+        modelViewMatrix = lookAt(eye, at, getCameraUp(forward));
+        projectionMatrix = perspective(fovy, aspect, near, far);
+
+        gl.uniformMatrix4fv(modelViewMatrixLoc, false, flatten(modelViewMatrix));
+        gl.uniformMatrix4fv(projectionMatrixLoc, false, flatten(projectionMatrix));
 
         var cBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, cBuffer);
@@ -496,12 +545,6 @@ var perspectiveExample3D = function () {
         var positionLoc = gl.getAttribLocation(program, "aPosition");
         gl.vertexAttribPointer(positionLoc, 4, gl.FLOAT, false, 0, 0);
         gl.enableVertexAttribArray(positionLoc);
-
-        modelViewMatrix = lookAt(eye, at, up);
-        projectionMatrix = perspective(fovy, aspect, near, far);
-
-        gl.uniformMatrix4fv(modelViewMatrixLoc, false, flatten(modelViewMatrix));
-        gl.uniformMatrix4fv(projectionMatrixLoc, false, flatten(projectionMatrix));
 
         gl.drawArrays(gl.TRIANGLES, 0, positionsArray.length); // Render as triangles
         requestAnimationFrame(render);
